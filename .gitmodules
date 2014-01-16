@@ -1,0 +1,6 @@
+[submodule "Veil-Catapult"]
+	path = Veil-Catapult
+	url = https://github.com/Veil-Framework/Veil-Catapult.git
+[submodule "Veil-Evasion"]
+	path = Veil-Evasion
+	url = https://github.com/Veil-Framework/Veil-Evasion.git
