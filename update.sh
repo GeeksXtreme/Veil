@@ -1,24 +1,46 @@
 #!/bin/bash
 
-# pull the new state of the submodules and do a recursive update
-git pull
-git submodule update --init --recursive
+# Global Variables
+gitcmd=`which git`
+veildir=`dirname ${0}`
 
-# run the Veil-Evasion setup script
-cd ./Veil-Evasion/setup/
-./setup.sh
+# Title Function
+func_title(){
+  # Clear Terminal (For Prettyness)
+  clear
+  # Print Title
+  echo '========================================================================='
+  echo ' Veil-Framework Update Script | [Updated]: 01.17.2015'
+  echo '========================================================================='
+  echo ' [Web]: https://www.veil-framework.com | [Twitter]: @VeilFramework'
+  echo '========================================================================='
+  echo
+}
 
-# run the Veil-Catapult setup script
-cd ./Veil-Catapult/
-./setup.sh
+# Git Requirement Check
+if [[ ${gitcmd} == '' ]]
+then
+  func_title
+  echo '[Error]: Git is not installed or not in PATH.'
+  echo '[Error]: Install git and re-run this update script.'
+  echo
+  exit 1
+fi
 
-clear
+# Call Title Function
+func_title
 
-echo '========================================================================='
-echo ' Veil-Framework Update Script | [Updated]: 01.15.2015'
-echo '========================================================================='
-echo ' [Web]: https://www.veil-framework.com | [Twitter]: @VeilFramework'
-echo '========================================================================='
-echo ''
-echo ' [*] Update complete!'
-echo ''
+# Change To Script Directory
+cd ${veildir}
+
+# Pull Latest Release Of Submodules
+${gitcmd} pull && ${gitcmd} submodule update --init --recursive
+
+# Set Working Directory
+veilpwd=`pwd -P`
+
+# Run Veil-Evasion Setup Script
+cd ${veilpwd}/Veil-Evasion/setup/ && ./setup.sh
+
+# Run Veil-Catapult Setup Script
+cd ${veilpwd}/Veil-Catapult/ && ./setup.sh
