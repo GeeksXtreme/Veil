@@ -4,3 +4,6 @@
 [submodule "Veil-Evasion"]
 	path = Veil-Evasion
 	url = https://github.com/Veil-Framework/Veil-Evasion.git
+[submodule "Veil-PowerView"]
+	path = Veil-PowerView
+	url = https://github.com/Veil-Framework/Veil-PowerView.git
